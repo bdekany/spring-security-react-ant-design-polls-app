@@ -14,15 +14,11 @@ spec:
     spec:                       # Spec for the containers that will run inside the Pods
       containers:
       - name: polling-app-client
-        image: callicoder/polling-app-client:1.0.0
-        imagePullPolicy: IfNotPresent
+        image: bdekany/polling-app-client
+        imagePullPolicy: Always
         ports:
           - name: http
             containerPort: 80   # Should match the Port that the container listens on
-        resources:
-          limits:
-            cpu: 0.2
-            memory: "10Mi"
 ---
 apiVersion: v1                  # API version
 kind: Service                   # Type of kubernetes resource
@@ -36,3 +32,17 @@ spec:
   - name: http
     port: 80
     targetPort: 80
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: polling-app-ingress
+spec:
+  rules:
+  - host: poll.g2.zypp.lo       
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: polling-app-client
+          servicePort: 80

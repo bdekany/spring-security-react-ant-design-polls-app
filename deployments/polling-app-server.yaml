@@ -21,10 +21,6 @@ spec:
         ports:
           - name: http
             containerPort: 8080 # The port that the container exposes
-        resources:
-          limits:
-            cpu: 0.2
-            memory: "200Mi"
         env:                  # Environment variables supplied to the Pod
         - name: SPRING_DATASOURCE_USERNAME # Name of the environment variable
           valueFrom:          # Get the value of environment variable from kubernetes secrets
@@ -56,3 +52,17 @@ spec:
   - name: http
     port: 8080
     targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: polling-app-api
+spec:
+  rules:
+  - host: javaapi.g2.zypp.lo
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: polling-app-server
+          servicePort: 8080
