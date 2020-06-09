@@ -18,7 +18,7 @@ COPY . ./
 
 # Arguments
 # ARG REACT_APP_API_BASE_URL
-ENV REACT_APP_API_BASE_URL="http://javaapi.g2.zypp.fr"
+ENV REACT_APP_API_BASE_URL="http://javaapi.g2.zypp.fr/api"
 
 # Build the application
 RUN npm run build
