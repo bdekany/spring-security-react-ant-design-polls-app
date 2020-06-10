@@ -59,10 +59,10 @@ metadata:
   name: polling-app-api
 spec:
   rules:
-  - host: javaapi.g2.zypp.lo
+  - host: poll.g2.zypp.lo
     http:
       paths:
-      - path: /
+      - path: /api
         backend:
           serviceName: polling-app-server
           servicePort: 8080
