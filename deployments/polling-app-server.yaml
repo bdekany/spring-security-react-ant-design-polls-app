@@ -52,17 +52,3 @@ spec:
   - name: http
     port: 8080
     targetPort: 8080
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  name: polling-app-api
-spec:
-  rules:
-  - host: poll.g2.zypp.lo
-    http:
-      paths:
-      - path: /api
-        backend:
-          serviceName: polling-app-server
-          servicePort: 8080
