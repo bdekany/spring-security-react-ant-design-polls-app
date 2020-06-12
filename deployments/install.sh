@@ -12,3 +12,5 @@ kubectl -n java get pvc
 read
 kubectl -n java apply -f polling-app-server.yaml
 kubectl -n java apply -f polling-app-client.yaml
+read
+kubectl -n java apply -f ingress.yaml
