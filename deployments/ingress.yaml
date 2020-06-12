@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: polling-app-ingress
+spec:
+  rules:
+  - host: poll.g1.zypp.lo       
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: polling-app-client
+          servicePort: 80
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: polling-app-api
+spec:
+  rules:
+  - host: poll.g1.zypp.lo
+    http:
+      paths:
+      - path: /api
+        backend:
+          serviceName: polling-app-server
+          servicePort: 8080
